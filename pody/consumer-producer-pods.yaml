@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: consumer-producer
+spec:
+  restartPolicy: Never
+  volumes:
+  - name: shared-data
+    emptyDir: {}
+
+  containers:
+  - name: producer
+    image: debian
+    volumeMounts:
+    - name: shared-data
+      mountPath: /data
+    command: ["/bin/sh"]
+    args: ["-c", "while :;do echo \"[$(date)] Hello there - I have really good products to offer\";sleep 10;done >> /data/offer.txt"]
+
+  - name: consumer
+    image: cloudowski/fussy-container:0.1
+    volumeMounts:
+    - name: shared-data
+      mountPath: /offer
+    command: ["/bin/sh"]
+    args: ["-c", "tail -F /offer/offer.txt"]
