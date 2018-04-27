@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: ReplicaSet
+metadata:
+  name: fussy-autoscaled
+  labels:
+    app: fussy-autoscaled
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fussy-autoscaled
+  template:
+    metadata:
+      labels:
+        app: fussy-autoscaled
+    spec:
+      containers:
+      - name: fussy
+        image: cloudowski/fussy-container
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 100m
+            memory: 50Mi

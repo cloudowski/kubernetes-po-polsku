@@ -5,3 +5,4 @@ metadata:
 spec:
   containers:
   - image: nginx:1.13-alpine
+    name: nginx

@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: ReplicaSet
+metadata:
+  name: fussy-rs
+  labels:
+    app: fussy-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fussy-rs
+  template:
+    metadata:
+      labels:
+        app: fussy-rs
+    spec:
+      containers:
+      - name: fussy
+        image: cloudowski/fussy-container
+        ports:
+        - containerPort: 8080
