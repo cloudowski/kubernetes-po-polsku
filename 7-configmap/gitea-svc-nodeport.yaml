@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gitea
+  name: gitea
+spec:
+  type: NodePort
+  ports:
+  - port: 3000
+    targetPort: web
+    name: web
+    nodePort: 31080
+  - port: 3022
+    targetPort: ssh
+    name: ssh
+    nodePort: 31022
+
+  selector:
+    app: gitea

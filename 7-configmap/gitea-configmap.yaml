@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  APP_NAME: "My awesome GIT server!!!"
+  #DISABLE_REGISTRATION: "true"
+  #LOCAL_ROOT_URL: "http://gitea.192.168.99.100.nip.io"
+  USER_UID: "1000"
+  USER_GID: "1000"
+kind: ConfigMap
+metadata:
+  name: gitea-config
+  labels:
+      app: gitea
