@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+  name: fussy
+spec:
+  rules:
+  - host: gitea-test.192.168.99.100.nip.io
+    http:
+      paths:
+      - backend:
+          serviceName: gitea
+          servicePort: 3000
+        path: /

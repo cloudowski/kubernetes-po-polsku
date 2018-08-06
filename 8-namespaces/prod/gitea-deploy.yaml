@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitea
+  labels:
+    app: gitea
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitea
+  template:
+    metadata:
+      labels:
+        app: gitea
+    spec:
+      containers:
+      - name: gitea
+        image: gitea/gitea:latest
+        ports:
+        - containerPort: 3000
+          name: web
+        - containerPort: 22
+          name: ssh
+
+        env:
+        - name: USER_UID
+          value: "1000"
+        - name: USER_GID
+          value: "1000"
+
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 3
+        
+        envFrom:
+        - configMapRef:
+            name: gitea-config
+
+#        # custom app.ini
+#        # WARNING - this makes configuration impossible from web ingerface!
+#        volumeMounts:
+#        - name: custom-conf
+#          mountPath: /data/gitea/conf/
+#        
+#      volumes:
+#      - name: custom-conf
+#        configMap:
+#          name: gitea-config-file

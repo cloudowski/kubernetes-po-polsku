@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gitea
+  name: gitea
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: web
+    name: web
+  - port: 22
+    targetPort: ssh
+    name: ssh
+
+  selector:
+    app: gitea

@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  APP_NAME: "Git TEST server"
+  USER_UID: "1000"
+  USER_GID: "1000"
+kind: ConfigMap
+metadata:
+  name: gitea-config
+  labels:
+      app: gitea
