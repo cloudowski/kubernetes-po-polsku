@@ -1,0 +1,22 @@
+dokuwikiUsername: admin
+dokuwikiPassword: admin
+
+dokuwikiEmail: admin@example.com
+
+dokuwikiFullName: Wiki Admin
+
+dokuwikiWikiName: Cloudowski Wiki
+
+service:
+  ## Kubernetes svc type
+  ## For minikube, set this to NodePort, elsewhere use LoadBalancer
+  ##
+  type: NodePort
+  nodePorts:
+    http: "30080"
+    https: "30443"
+
+ingress:
+  enabled: true
+  hosts:
+  - name: wiki.192.168.99.100.nip.io
