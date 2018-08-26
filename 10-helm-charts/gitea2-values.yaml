@@ -1,0 +1,6 @@
+giteaName: Gitea1 - PROD server
+ingress:
+  enabled: true
+  hosts:
+    - git-prod.192.168.99.100.nip.io
+

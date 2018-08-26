@@ -1,0 +1,6 @@
+giteaName: Gitea1 - TEST server
+ingress:
+  enabled: true
+  hosts:
+    - git-test.192.168.99.100.nip.io
+

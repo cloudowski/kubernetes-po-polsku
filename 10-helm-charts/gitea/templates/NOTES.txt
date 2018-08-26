@@ -1,0 +1,8 @@
+{{- if .Values.ingress.enabled }}
+Get the application URL by running these commands:
+{{- range .Values.ingress.hosts }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ . }}{{ $.Values.ingress.path }}
+{{- end }}
+{{- else }}
+Ingress is disabled. Consider enabling it to get an easy access to your gitea service!
+{{- end }}

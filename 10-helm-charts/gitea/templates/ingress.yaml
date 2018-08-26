@@ -1,0 +1,19 @@
+{{- $releaseName := .Release.Name -}}
+{{- if .Values.ingress.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+  name: {{ $releaseName }}
+spec:
+  rules:
+{{- range .Values.ingress.hosts }}
+  - host: {{ . }}
+    http:
+      paths:
+        - backend:
+            serviceName: {{ $releaseName }}
+            servicePort: 3000
+{{- end -}}
+{{- end -}}

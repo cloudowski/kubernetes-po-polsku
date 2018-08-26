@@ -1,0 +1,18 @@
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+
+  hosts:
+    charts.192.168.99.100.nip.io:
+        - /
+        - /index.yaml
+env:
+  open:
+    STORAGE: local
+    DEBUG: false
+    LOG_JSON: true
+    DISABLE_METRICS: true
+    DISABLE_API: false
+    ALLOW_OVERWRITE: true
