@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: podvol
+spec:
+  containers:
+  - image: cloudowski/fussy-container
+    name: fussy
+    volumeMounts:
+    - mountPath: /data
+      name: data1
+    - mountPath: /shared
+      name: shared
+  volumes:
+  - name: data1
+    hostPath:
+      path: /volumes/data1
+  - name: shared
+    nfs:
+      server: 10.96.100.100
+      path: "/vol7"

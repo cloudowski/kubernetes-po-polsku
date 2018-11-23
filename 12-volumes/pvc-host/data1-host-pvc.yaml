@@ -1,0 +1,14 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-data1
+  labels:
+    type: host
+spec:
+  # set to empty to disable dynamic provisioning using StorageClass
+  storageClassName: "fast-and-furious"
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

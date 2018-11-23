@@ -1,0 +1,12 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-data2
+spec:
+  # set to empty to disable dynamic provisioning using StorageClass
+  storageClassName: "slow-but-stable"
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 3Gi

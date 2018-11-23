@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pvcvol-host
+spec:
+  containers:
+  - image: cloudowski/fussy-container
+    name: fussy
+    volumeMounts:
+    - mountPath: /data
+      name: data1
+  volumes:
+  - name: data1
+    persistentVolumeClaim:
+      claimName: pvc-data1
