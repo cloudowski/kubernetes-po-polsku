@@ -1,0 +1,51 @@
+ghostUsername: ghost    
+ghostPassword: ghost12345
+ghostEmail: ghost@example.com
+ghostBlogTitle: Kubernetes po polsku
+ghostHost: g1.138.68.114.53.nip.io
+
+allowEmptyPassword: "yes"
+
+
+service:
+  type: LoadBalancer
+  port: 80
+  nodePorts:
+    http: "32000"
+
+
+ingress:
+  enabled: true
+  ## Set this to true in order to add the corresponding annotations for cert-manager
+  certManager: true
+
+  ## For a full list of possible ingress annotations, please see
+  ## ref: https://github.com/kubernetes/ingress-nginx/blob/master/docs/annotations.md
+  ##
+  ## If tls is set to true, annotation ingress.kubernetes.io/secure-backends: "true" will automatically be set
+  ## If certManager is set to true, annotation kubernetes.io/tls-acme: "true" will automatically be set
+  annotations:
+  #  kubernetes.io/ingress.class: nginx
+
+  hosts:
+  - name: g1.138.68.114.53.nip.io
+    path: /
+
+    ## Set this to true in order to enable TLS on the ingress record
+    tls: false
+    tlsHosts:
+    - g1.138.68.114.53.nip.io
+
+    tlsSecret: ghost.local-tls
+
+persistence:
+  enabled: true
+  # storageClass: "-"
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  path: /bitnami
+
+resources:
+  requests:
+    memory: 512Mi
+    cpu: 100m
