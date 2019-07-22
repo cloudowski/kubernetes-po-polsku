@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: casc-krazycow-pipeline
+  labels:
+    jenkins-jenkins-config: "true"
+data:
+  krazycow-pipeline.yaml: |+
+    jobs:
+      - script: >
+         
+          multibranchPipelineJob('multi-krazy-cow') {
+            branchSources {
+                git {
+                    remote('http://gitea.192.168.99.163.nip.io/root/krazy-cow')
+                    credentialsId 'gitea-root'
+                }
+            }
+            orphanedItemStrategy {
+                discardOldItems {
+                    numToKeep(20)
+                }
+            }
+          }

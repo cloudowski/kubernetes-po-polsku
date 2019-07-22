@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: casc-theme
+  labels:
+    jenkins-jenkins-config: "true"
+data:
+  theme.yaml: |+
+    unclassified:
+      simple-theme-plugin:
+        elements:
+          - cssUrl: 
+              url: "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-indigo.css"

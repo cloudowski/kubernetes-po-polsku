@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: casc-gitea
+  labels:
+    jenkins-jenkins-config: "true"
+data:
+  gitea.yaml: |+
+    credentials:
+      system:
+        domainCredentials:
+          - credentials:
+              - usernamePassword:
+                  scope:    GLOBAL
+                  id:       gitea-root
+                  username: root
+                  password: root
+                  description: "Gitea root password"
+
+    unclassified:
+      giteaServers:
+        servers:
+        - credentialsId: "gitea-root"
+          displayName: "gitea"
+          manageHooks: true
+          serverUrl: "http://gitea.192.168.99.163.nip.io//"
