@@ -1,0 +1,12 @@
+apiVersion: "cloudowski.com/v1beta1"
+kind: ShoppingList
+metadata:
+  name: zakupy-1
+spec:
+  store: żuczek
+  priority: price
+  list:
+      - name: sok
+        count: 2
+      - name: malinki
+        count: 1

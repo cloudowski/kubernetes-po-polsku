@@ -1,0 +1,12 @@
+apiVersion: "cloudowski.com/v1"
+kind: ShoppingList
+metadata:
+  name: zakupy-2
+spec:
+  store: ropuszka
+  #  priority: quality
+  list:
+      - name: mleko
+        kind: "2%"
+      - name: naleśniki
+        count: 4
