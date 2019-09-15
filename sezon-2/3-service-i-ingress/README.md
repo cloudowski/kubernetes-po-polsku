@@ -13,7 +13,6 @@
 
 ```
 minikube start -p cloudowski
-```
 
 minikube addons enable ingress
 
@@ -29,9 +28,12 @@ apk add --no-cache bind-tools
 kubectl expose deployment ghost --cluster-ip=None --target-port=2368 --port=80 --name=g3
 
 helm install stable/ghost --values=ghost-values.yaml --name=g1
+```
 
-# DO
 
+# DigitalOcean
+
+```
 kubectl -n kube-system create serviceaccount tiller
 kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
 helm init --service-account tiller
@@ -40,3 +42,4 @@ helm install stable/nginx-ingress --name nginx-ingress --set controller.publishS
 kubectl create ns g1
 kubens g1
 helm install stable/ghost --values=ghost-values-do.yaml --name=g1
+```
