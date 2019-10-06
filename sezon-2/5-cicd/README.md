@@ -1,6 +1,6 @@
 # Jenkins jako kontener
 
-* Komendy
+Komendy do uruchomienia Jenkinsa w kontenerze z Helm Chart:
 
 ```
 helm init
@@ -12,6 +12,7 @@ kubectl create ns jenkins
 kubectl apply -f jenkins/casc/ -n jenkins
 
 # poniższe zadziała tylko na linux/macos - windowsowi mają gorzej, no chyba, że mają WSL/WSL2
+
 JENKINS_HOST=jenkins.$(minikube ip).nip.io
 
 helm install --namespace jenkins -n jenkins stable/jenkins -f jenkins/jenkins-values.yaml \
@@ -26,6 +27,7 @@ kubectl create clusterrolebinding jenkins-deployer-admin --clusterrole=cluster-a
 
 
 # podmień na ścieżkę do twojej konfiguracji dockera
+
 kubectl create secret generic jenkins-docker-creds  --from-file=.dockerconfigjson=/Users/tomasz/.docker/config.json  --type=kubernetes.io/dockerconfigjson -n jenkins
 
 echo http://$JENKINS_HOST
@@ -33,6 +35,7 @@ echo http://$JENKINS_HOST
 
 # Gitea 
 
+Uruchomienie serwera Gitea z użyciem Helm Chart:
 
 ```
 CHARTDIR=/tmp/gitea-helm-chart
@@ -51,8 +54,8 @@ helm install --values gitea-values.yaml --name gitea \
 
 echo http://gitea.${DNSDOMAIN}
 
-# poniższe dopiero jak już Gitea będzie dostępna
+# ustawienie automatyczne użytkownika root z hasłem root - uruchamiać dopiero jak już Gitea będzie dostępna czyli po około 10-20s
 GITEA_POD=$(kubectl get pod -lapp=gitea-gitea --no-headers|awk '{print $1}')
 kubectl exec -ti $GITEA_POD -- su git -c '/app/gitea/gitea admin create-user --username root --password root --email root@example.com --admin'
-
 ```
+
