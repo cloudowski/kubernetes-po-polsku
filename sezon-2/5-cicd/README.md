@@ -15,8 +15,9 @@ kubectl apply -f jenkins/casc/ -n jenkins
 
 JENKINS_HOST=jenkins.$(minikube ip).nip.io
 
+# instalacja wersji 1.6.0 do czasu rozwiązania https://github.com/helm/charts/issues/17135
 helm install --namespace jenkins -n jenkins stable/jenkins -f jenkins/jenkins-values.yaml \
-    --set master.ingress.hostName=$JENKINS_HOST
+    --set master.ingress.hostName=$JENKINS_HOST --version 1.6.0
 
 
 
