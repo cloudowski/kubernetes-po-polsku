@@ -51,14 +51,14 @@ master:
 
   # List of plugins to be install during Jenkins master start
   installPlugins:
-    - kubernetes:1.18.1
-    - workflow-job:2.33
-    - workflow-aggregator:2.6
-    - credentials-binding:1.19
-    - git:3.11.0
+    - kubernetes
+    - workflow-job
+    - workflow-aggregator
+    - credentials-binding
+    - git
     - prometheus
     - blueocean
-    - job-dsl:1.74
+    - job-dsl
     - gitea
     - rocketchatnotifier
     - gitlab-merge-request-jenkins

@@ -12,6 +12,7 @@ data:
           multibranchPipelineJob('multi-krazy-cow') {
             branchSources {
                 git {
+                    id('123456789')
                     remote('http://gitea.192.168.99.163.nip.io/root/krazy-cow')
                     credentialsId 'gitea-root'
                 }
