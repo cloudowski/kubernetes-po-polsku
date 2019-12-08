@@ -1,0 +1,10 @@
+postgresql:
+  install: false
+
+service:
+    gogs:
+        databaseType: sqlite3
+    ingress:
+      enabled: true
+      hosts:
+      - git.192.168.99.100.nip.io
