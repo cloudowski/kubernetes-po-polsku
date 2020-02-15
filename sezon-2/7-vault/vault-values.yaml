@@ -1,0 +1,44 @@
+server:
+  ingress:
+    enabled: true
+    hosts:
+    - host: chart-example.local
+      paths:
+      - /
+
+  authDelegator:
+    enabled: true
+
+  dataStorage:
+    enabled: true
+    size: 1Gi
+    storageClass: null
+
+  dev:
+    enabled: false
+
+  # past a single replica.
+  standalone:
+    enabled: "true"
+
+    # config is a raw string of default configuration when using a Stateful
+    # deployment. Default is to use a PersistentVolumeClaim mounted at /vault/data
+    # and store data there. This is only used when using a Replica count of 1, and
+    # using a stateful set. This should be HCL.
+    config: |
+      ui = true
+
+      listener "tcp" {
+        tls_disable = 1
+        address = "[::]:8200"
+        cluster_address = "[::]:8201"
+      }
+      storage "file" {
+        path = "/vault/data"
+      }
+
+ui:
+  enabled: true
+  serviceType: "ClusterIP"
+  serviceNodePort: null
+  externalPort: 8200
